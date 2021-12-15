@@ -51,7 +51,7 @@ userRouter.post('/login', async (req,res) => {
         : await bcrypt.compare(req.body.password, user.password)
 
         if(!(user && passwordIsCorrect)){
-            res.json(false)
+            return res.json(false)
         }
 
         let token = await jwt.sign(
